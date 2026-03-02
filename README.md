@@ -60,11 +60,6 @@ gz topic -e -t /lidar
 
 
 
-
-Це чудове рішення. Твій перший README.md написаний дуже професійно, тому ми витримаємо такий самий стиль для другої частини. Оскільки тепер проект перейшов від чистої симуляції в Gazebo до повноцінної екосистеми ROS 2, нам потрібно акцентувати увагу на вузлах (nodes) та мостах (bridges).
-
-Ось доповнення, яке ти можеш вставити відразу після секції першої лабораторної:
-
 Lab 2: ROS 2 Integration, Sensors, and Autonomous Control
 Overview
 This stage of the project integrates the previously developed robot model with the ROS 2 Jazzy framework. The goal was to establish a communication bridge between the physics engine (Gazebo) and ROS 2 nodes to process sensor data and control the robot programmatically using Python.
