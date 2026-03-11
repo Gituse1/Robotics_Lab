@@ -16,7 +16,7 @@ class LidarSubscriber(Node):
         min_distance = min(msg.ranges)
         self.get_logger().info(f'Мінімальна відстань: {min_distance:.2f} м')
 
-def main(args=None):  # Ось ця функція має бути обов'язково!
+def main(args=None):  
     rclpy.init(args=args)
     node = LidarSubscriber()
     try:

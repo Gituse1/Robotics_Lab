@@ -157,7 +157,7 @@
                 </sensor>
             </link>
 
-            <joint name='lidar_joint' type='fixed'>s
+            <joint name='lidar_joint' type='fixed'>
                 <parent>chassis</parent>
                 <child>lidar_link</child>
             </joint>

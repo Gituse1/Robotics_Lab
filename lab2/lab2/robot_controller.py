@@ -13,8 +13,8 @@ class RobotController(Node):
     def timer_callback(self):
         msg = Twist()
         # ЛОГІКА РУХУ:
-        msg.linear.x = 0.5  # Швидкість вперед (м/с)
-        msg.angular.z = 0.3 * math.sin(self.counter * 0.1)  # Зигзаг
+        msg.linear.x = 0.5  
+        msg.angular.z = 0.3 * math.sin(self.counter * 0.1)  
         
         self.publisher.publish(msg)
         self.counter += 1
