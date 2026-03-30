@@ -8,15 +8,12 @@ class Figure8Path(Node):
         super().__init__('figure_8_path')
         self.publisher_ = self.create_publisher(TwistStamped, '/cmd_vel', 10)
         
-        # Параметри
-        self.linear_speed = 0.4 
+        self.linear_speed = 0.3
         self.angular_speed = 0.8
         
-        # Час кола з поправкою на інерцію (приблизно 11-12 секунд разом із запасом)
-        # Збільшуємо запас до 4.5, щоб кола замикалися
+        
         self.circle_duration = ((2 * 3.14159) / self.angular_speed) + 4.5
         
-        # Даємо системі час на встановлення зв'язку
         time.sleep(2.0)
         self.run_figure_8()
 
@@ -24,7 +21,6 @@ class Figure8Path(Node):
         msg = TwistStamped()
         msg.header.frame_id = 'base_link' 
 
-        # 1. Коло вліво
         self.get_logger().info(f"Moving left circle for {self.circle_duration:.2f}s...")
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.twist.linear.x = self.linear_speed
@@ -40,13 +36,21 @@ class Figure8Path(Node):
 
         # 2. Коло вправо
         self.get_logger().info(f"Moving right circle for {self.circle_duration:.2f}s...")
+        self.linear_speed =0.2
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.twist.linear.x = self.linear_speed
         msg.twist.angular.z = -self.angular_speed 
         self.publisher_.publish(msg)
         time.sleep(self.circle_duration)
 
-        # 3. Зупинка
+        self.get_logger().info(f"Moving left circle for {self.circle_duration:.2f}s...")
+        self.linear_speed =0.1
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.twist.linear.x = self.linear_speed
+        msg.twist.angular.z = self.angular_speed
+        self.publisher_.publish(msg)
+        time.sleep(self.circle_duration)
+
         self.get_logger().info("Figure-8 completed. Stopping.")
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.twist.linear.x = 0.0
